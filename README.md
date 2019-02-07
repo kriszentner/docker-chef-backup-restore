@@ -12,13 +12,16 @@ You'll want to edit the following files to get this working:
 ## Using [knife ec backup](https://github.com/chef/knife-ec-backup)
 This is a [knife](https://docs.chef.io/knife.html) module which connects to the chef server via its API. 
 
-### Creating an knife ec backup Dockerfile
+### Creating an knife ec backup Container
+
 Using Docker for backups reduces the need to think about dependancies for `knife ec backup` which can be a bit finicky.
 
 You'll also want a valid `/root/.chef/knife.rb` and user .pem file in the same directory for your backups. Best to use [chef-server-ctl](https://docs.chef.io/ctl_chef_server.html) to create a user. The creation of the knife.rb and pem file is outside the scope of this document.
 
+There is a `build.sh` file which will create the container for you if you don't want to think about the docker commands to do so.
+
 ### Running the container
-The run.sh script is sufficient to run the container. Once in the container, there's a /root/backup.sh file which you can use to run your backups. You can configure this to launch via cron.
+The `run.sh` script is sufficient to run the container. Once in the container, there's a /root/backup.sh file which you can use to run your backups. You can configure this to launch the container and the script via cron.
 
 # The Restore
 
