@@ -3,6 +3,8 @@ A Dockerfile and scripts to backup and restore a chef server using knife ec back
 
 This is something I spent some time getting together for my day job, so hopefully this will help others wanting to do a chef migration. Lots of information is out there, but not quite all the pieces were put together. This brings them closer.
 
+If you have a single chef server doing all your operations, and are running it in the cloud, I recommend this method of upgrading as it allows you to test your new server, and it lends to much less nail biting during the upgrade process.
+
 # Getting started
 You'll want to edit the following files to get this working:
 * admin.pem - This needs to be a valid chef admin user's .pem file.
@@ -44,7 +46,7 @@ api_fqdn 'mychefserver.contoso.com'
 nginx['ssl_certificate'] = '/var/opt/opscode/nginx/ca/mychefserver.contoso.com.crt'
 nginx['ssl_certificate_key'] = '/var/opt/opscode/nginx/ca/mychefserver.contoso.com.key'
 ```
-From here you can run the container on the server:
+From here you can run the container on the new server you're restoring to:
 ```bash
 docker run --rm -it --network="host" -v /data:/data -v /etc/chef:/etc/chef -v/etc/opscode/:/etc/opscode -v/var/opt/opscode/nginx/ca:/var/opt/opscode/nginx/ca docker-ec-backup /bin/bash
 ```
