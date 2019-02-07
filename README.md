@@ -22,6 +22,18 @@ The run.sh script is sufficient to run the container. Once in the container, the
 
 # The Restore
 
+We can use the same container to restore the chef server.
+
+## Chef Server Installation
+You'll need to provision a server and install chef-server on it as documented [here](https://docs.chef.io/install_server.html).
+1. Download the package from https://downloads.chef.io/chef-server/.
+2. Run `sudo dpkg -i /tmp/chef-server-core-<version>.deb`
+3. Run `sudo chef-server-ctl reconfigure`
+
+At this point you'll have a server ready for a restore.
+
+## Running the Restore
+
 **If you plan on reusing the fqdn and certificates from your old server**
 In the `/etc/opscode/chef-server.rb` file you'll want to ensure you have the following specified (with values filled in as appropriate):
 ```ruby
