@@ -1,7 +1,7 @@
 FROM ruby
 RUN apt-get update \
 && echo "gem: --no-document" >> ~/.gemrc \
-&& apt-get -y install gcc postgresql libpq-dev wget $(apt-cache search libicu[0-9][0-9]|cut -d' ' -f 1) rsync libunwind-dev $(apt-cache search libssl1.0.[0-9]|cut -d' ' -f 1) \
+&& apt-get -y install gcc postgresql libpq-dev wget $(apt-cache search libicu[0-9][0-9]|cut -d' ' -f 1) rsync libunwind-dev $(apt-cache search libssl1.0.[0-9]|cut -d' ' -f 1) vim \
 && gem install knife-ec-backup \
 && gem install knife-tidy \
 && wget -O azcopy.tar.gz https://aka.ms/downloadazcopylinux64 \
